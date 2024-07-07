@@ -1,0 +1,60 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "mkbuild",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "build"
+            ],
+            "options": {},
+            "problemMatcher": [],
+            "group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "cmake generate",
+            "command": "cmake",
+            "args": [
+                "..",
+                "-DCMAKE_BUILD_TYPE=Debug"
+
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"  // 表示当前执行目录build文件夹
+            },
+            "group": "build",
+            "dependsOn": "mkbuild"
+        },
+        {
+            "type": "shell",
+            "label": "make compile",
+            "command": "/usr/bin/make",
+            "args": [
+                "-j8"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "dependsOn": "cmake generate"
+        },
+        {
+            "type": "shell",
+            "label": "make clean",
+            "command": "/usr/bin/make",
+            "args": [
+                "clean"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": [],
+            "group": "build",
+        }
+    ]
+}

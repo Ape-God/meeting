@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/meetingClient">
+        <file>src/defaultAvatar.jpg</file>
+        <file>src/loding.gif</file>
+    </qresource>
+</RCC>
